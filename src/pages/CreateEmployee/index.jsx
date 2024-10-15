@@ -137,10 +137,12 @@ const CreateEmployee = () => {
         </button>
       </div>
 
-      <Modal
-        message="Employee Created!"
-        onClose={() => setModalVisible(false)}
-      />
+      {modalVisible && (
+        <Modal
+          message="Employee Created!"
+          onClose={() => setModalVisible(false)}
+        />
+      )}
     </>
   )
 }
