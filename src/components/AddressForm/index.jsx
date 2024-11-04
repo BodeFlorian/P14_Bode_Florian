@@ -40,11 +40,11 @@ export const AddressForm = ({
         onChange={(e) => setCity(e.target.value)}
       />
 
-      <label htmlFor="state">State</label>
       <Dropdown
         options={stateNames}
         onSelect={handleStateSelect}
         defaultValue={states.find((s) => s.abbreviation === state)?.name || ''}
+        label="State"
       />
 
       <label htmlFor="zip-code">Zip Code</label>

@@ -99,11 +99,11 @@ const EmployeeForm = ({ states, saveEmployee }) => {
           states={states}
         />
 
-        <label htmlFor="department">Department</label>
         <Dropdown
           options={departments}
           onSelect={setDepartment}
           defaultValue={department}
+          label="Department"
         />
       </form>
 
