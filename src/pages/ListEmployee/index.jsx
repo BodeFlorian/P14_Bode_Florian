@@ -8,7 +8,7 @@ const ListEmployee = () => {
   const employees = useSelector(selectEmployees)
 
   return (
-    <div class="container" id="employee-div">
+    <div className="container" id="employee-div">
       <h1>Current Employees</h1>
       <EmployeeTable employees={employees} />
       <Link to="/">Home</Link>

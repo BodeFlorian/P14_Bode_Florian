@@ -1,33 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-
-const loadEmployeesFromLocalStorage = () => {
-  try {
-    const serializedState = localStorage.getItem('employees')
-    return serializedState ? JSON.parse(serializedState) : []
-  } catch (e) {
-    console.error('Erreur lors du chargement des employés', e)
-    return []
-  }
-}
-
-const saveEmployeesToLocalStorage = (employees) => {
-  try {
-    const serializedState = JSON.stringify(employees)
-    localStorage.setItem('employees', serializedState)
-  } catch (e) {
-    console.error('Erreur lors de la sauvegarde des employés', e)
-  }
-}
+import { mockEmployees } from '../../utils/data/mockEmployees'
 
 export const addEmployee = createAsyncThunk(
   'employees/addEmployee',
-  async (newEmployee, { getState }) => {
-    const { employees } = getState().employees
-
-    const updatedEmployees = [...employees, newEmployee]
-
-    saveEmployeesToLocalStorage(updatedEmployees)
-
+  async (newEmployee) => {
     return newEmployee
   },
 )
@@ -35,7 +11,7 @@ export const addEmployee = createAsyncThunk(
 const employeeSlice = createSlice({
   name: 'employees',
   initialState: {
-    employees: loadEmployeesFromLocalStorage(),
+    employees: mockEmployees,
   },
   extraReducers: (builder) => {
     builder.addCase(addEmployee.fulfilled, (state, action) => {
@@ -45,5 +21,4 @@ const employeeSlice = createSlice({
 })
 
 export const selectEmployees = (state) => state.employees.employees
-
 export default employeeSlice.reducer

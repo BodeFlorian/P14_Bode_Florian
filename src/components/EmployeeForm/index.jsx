@@ -3,15 +3,9 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { AddressForm } from './../AddressForm'
 import { ModalComponent } from './../ModalComponent'
+import { formatDate } from './../../utils/dateUtils/formatDate'
+import { departments } from '../../utils/data/departments'
 import Dropdown from './../Dropdown'
-
-const formatDate = (date) => {
-  if (!date) return ''
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const year = date.getFullYear()
-  return `${day}/${month}/${year}`
-}
 
 const EmployeeForm = ({ states, saveEmployee }) => {
   const [firstName, setFirstName] = useState('')
@@ -24,14 +18,6 @@ const EmployeeForm = ({ states, saveEmployee }) => {
   const [zipCode, setZipCode] = useState('')
   const [department, setDepartment] = useState('Sales')
   const [modalVisible, setModalVisible] = useState(false)
-
-  const departments = [
-    'Sales',
-    'Marketing',
-    'Engineering',
-    'Human Resources',
-    'Legal',
-  ]
 
   const handleSaveEmployee = () => {
     const employeeData = {
@@ -73,6 +59,7 @@ const EmployeeForm = ({ states, saveEmployee }) => {
 
         <label htmlFor="date-of-birth">Date of Birth</label>
         <DatePicker
+          id="date-of-birth"
           selected={dateOfBirth}
           onChange={(date) => setDateOfBirth(date)}
           dateFormat="dd/MM/yyyy"
@@ -81,6 +68,7 @@ const EmployeeForm = ({ states, saveEmployee }) => {
 
         <label htmlFor="start-date">Start Date</label>
         <DatePicker
+          id="start-date"
           selected={startDate}
           onChange={(date) => setStartDate(date)}
           dateFormat="dd/MM/yyyy"
